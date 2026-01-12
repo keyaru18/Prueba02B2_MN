@@ -39,7 +39,7 @@ def eliminacion_gaussiana(A: np.ndarray) -> np.ndarray:
     """
     if not isinstance(A, np.ndarray):
         logging.debug("Convirtiendo A a numpy array.")
-        A = np.array(A)
+        A = np.array(A, dtype=float)
     assert A.shape[0] == A.shape[1] - 1, "La matriz A debe ser de tamaño n-by-(n+1)."
     n = A.shape[0]
 
