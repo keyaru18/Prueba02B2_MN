@@ -96,7 +96,7 @@ def eliminacion_gaussiana(A: np.ndarray) -> np.ndarray:
 
 
 # ####################################################################
-def descomposicion_LU(A: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def descomposicion_LU(A: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray ]:#<--- Cambio aqui
     """Realiza la descomposición LU de una matriz cuadrada A.
     [IMPORTANTE] No se realiza pivoteo.
 
@@ -119,17 +119,17 @@ def descomposicion_LU(A: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray
     n = A.shape[0]
 
     L = np.zeros((n, n), dtype=float)
-    P = np.identity(n, dtype=float)
+    P = np.identity(n, dtype=float) #<--- Cambio aqui
 
     for i in range(0, n):  # loop por columna
 
         # --- deterimnar pivote
-        pivot_index = np.argmax(np.abs(A[i:, i])) + i
-        if pivot_index != i:
-            P[[i, pivot_index], :] = P[[pivot_index, i], :]
-            A[[i, pivot_index], :] = A[[pivot_index, i], :]
-            if i > 0:
-                L[[i, pivot_index], :i] = L[[pivot_index, i], :i]
+        pivot_index = np.argmax(np.abs(A[i:, i])) + i#<--- Cambio aqui
+        if pivot_index != i:#<--- Cambio aqui
+            P[[i, pivot_index], :] = P[[pivot_index, i], :]#<--- Cambio aqui
+            A[[i, pivot_index], :] = A[[pivot_index, i], :]#<--- Cambio aqui
+            if i > 0:#<--- Cambio aqui
+                L[[i, pivot_index], :i] = L[[pivot_index, i], :i]#<--- Cambio aqui
 
         if A[i, i] == 0:
             raise ValueError("No existe solución única.")
@@ -147,11 +147,11 @@ def descomposicion_LU(A: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray
     if A[n - 1, n - 1] == 0:
         raise ValueError("No existe solución única.")
 
-    return P, L, A
+    return P, L, A#<--- Cambio aqui
 
 
 # ####################################################################
-def resolver_LU(P: np.ndarray,L: np.ndarray, U: np.ndarray, b: np.ndarray) -> np.ndarray:
+def resolver_LU(P: np.ndarray,L: np.ndarray, U: np.ndarray, b: np.ndarray) -> np.ndarray:#<--- Cambio aqui
     """Resuelve un sistema de ecuaciones lineales mediante la descomposición LU.
 
     ## Parameters
@@ -169,7 +169,7 @@ def resolver_LU(P: np.ndarray,L: np.ndarray, U: np.ndarray, b: np.ndarray) -> np
     """
 
     n = L.shape[0]
-    b = P @ b  # aplicar permutación a b
+    b = P @ b  #<--- Cambio aqui
 
     # --- Sustitución hacia adelante
     logging.info("Sustitución hacia adelante")
